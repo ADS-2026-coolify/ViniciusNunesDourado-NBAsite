@@ -1,0 +1,24 @@
+services:
+  back:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - PORT=3001
+      - NODE_ENV=production
+    expose:
+      - "3001"
+
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+    expose:
+      - "3000"
+    depends_on:
+      - back
